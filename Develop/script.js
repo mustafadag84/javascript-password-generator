@@ -12,6 +12,9 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// myrandomness = myrandomness + collectionValid[Math.floor(Math.random() * collectionValid.length)]
+
+
 
 // generatePassword function should be below
 

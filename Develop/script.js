@@ -7,98 +7,90 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
+  console.log("Password output:", password)
+
   passwordText.value = password;
-}
+}//end writePassword() fct def
 
 // generatePassword function should be below
 // *********************** function logic **********************
 function generatePassword() {
-   
+
   //  need a prompt here and ask for the length from the user
   //  a length of at least 8 characters and no more than 128 characters
   var userChoice = prompt("length of your password must be at least 8 characters and no more than 128 characters: "); //should be integer
 
-// check IF the input number is < 8 and > 128
+  // check IF the input number is < 8 and > 128
   if (userChoice < 8 || userChoice > 128 || userChoice == "") {
     alert("Please enter at least 8 characters and no more than 128 characters ")
     //ask them for the length again and store to userChoice
   }
 
-  var userChoice = parseInt(passwordArray)
-  console.log(userChoice)
+  var userChoiceInt = parseInt(userChoice)
 
-  var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-  var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  var specialCharacter = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "-", "/", ":", ";", "<", ">", "=", "?", "@", "^", "_", "~"];
-  var collectionValid = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "#", "$", "%", "&", "(", ")", "*", "+", "-", "/", ":", ";", "<", ">", "=", "?", "@", "^", "_", "~"];
+
+  var lowerCaseArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var upperCaseArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var numberArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var specialCharacterArr = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "-", "/", ":", ";", "<", ">", "=", "?", "@", "^", "_", "~"];
+  var collectionValid = [];
   var passwordArray = [];
-  
-  
 
-  // WHEN I answer each prompt
-  // THEN my input should be validated and at least one character type should be selected
+  //  my input should be validated and at least one character type should be selected
   // each prompt needs to be validated...
-  // in this case, we should probably use a function to turn the length into a number
 
-  // ************** 4 confirms **************
-
+ //if lower is true
   var lowerCase = confirm("Do you want to use a lowercase?");//ok = true/cancel=false
-  //???
-  //if lowerCase is true
+
   if (lowerCase === true) {
-    for (var i = 0; i < lowerCase.length; i++) {
-      passwordArray.push(lowerCase[i]);
+
+    for (var i = 0; i < lowerCaseArr.length; i++) {
+      collectionValid.push(lowerCaseArr[i]);
     }
   }
 
+
+ //if uppercase is true
   var upperCase = confirm("Do you want to use a uppercase?");
 
-  //if lowerCase is true
   if (upperCase === true) {
-    for (var i = 0; i < upperCase.length; i++) {
-      passwordArray.push(upperCase[i]);
+    for (var i = 0; i < upperCaseArr.length; i++) {
+      collectionValid.push(upperCaseArr[i]);
+      console.log('Collection Valid, so far ...\n', collectionValid);
     }
   }
 
 
+ //if number is true
   var number = confirm("Do you want to use a numeric?");
-
-  //if upperCase is true
+ 
+  console.log("Num set chosen?", number)
   if (number === true) {
-    for (var i = 0; i < number.length; i++) {
-      passwordArray.push(number[i]);
+    for (var j = 0; j < numberArr.length; j++) {
+      collectionValid.push(numberArr[j]);
     }
   }
- 
 
+
+//if specialCharacter is true
   var specialCharacter = confirm("Do you want to use a special character?");
 
-  //if lowerCase is true
-  if (lowerCase === true) {
-    for (var i = 0; i < specialCharacter.length; i++) {
-      passwordArray.push(specialCharacter[i]);
+  if (specialCharacter === true) {
+    for (var k = 0; k < specialCharacterArr.length; k++) {
+      collectionValid.push(specialCharacterArr[k]);
     }
   }
 
-  // using the number from above and the 4 booleans
-
-  // all the information is gathered (all prompts are finished getting input)
-  
-  // myrandomness = myrandomness + collectionValid[Math.floor(Math.random() * collectionValid.length)]
-
-  function collectionValid(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  for (var p = 0; p < userChoiceInt; p++) {
+    passwordArray.push(collectionValid[Math.floor(Math.random() * collectionValid.length)])
   }
-  console.log(collectionValid(8, 128));
-  console.log(parseInt([i]));
 
-  // THEN the password is either displayed in an alert or written to the page
-  
 
-}
+  return passwordArray.join("");
+
+}//end generatePass
 // *********************** end function logic **********************
-// Add event listener to generate button
+
 // WHEN I click the button to generate a password
 generateBtn.addEventListener("click", writePassword);
 

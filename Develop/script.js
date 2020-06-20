@@ -56,7 +56,6 @@ function generatePassword() {
   if (upperCase === true) {
     for (var i = 0; i < upperCaseArr.length; i++) {
       collectionValid.push(upperCaseArr[i]);
-      console.log('Collection Valid, so far ...\n', collectionValid);
     }
   }
 
